@@ -13,10 +13,10 @@ export function HeroSection() {
     <section className="min-h-screen flex items-center justify-center bg-gradient-to-b from-white to-slate-50 dark:from-slate-950 dark:to-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 className="text-5xl md:text-6xl font-bold text-primary mb-6 text-balance">
-          Master English with Excellence
+          Empower Your Child with the gift of Confidence
         </h1>
         <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 mb-12 max-w-2xl mx-auto text-balance">
-          Elevate your English skills with our comprehensive undergraduate and postgraduate programs
+          Boost your child's confidence and eliminate English speaking anxiety with our unique program.WE use fun activities and games to help children speak in English accurately and fluently.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link href="/auth/sign-up">
