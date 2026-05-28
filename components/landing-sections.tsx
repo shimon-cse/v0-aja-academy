@@ -16,7 +16,7 @@ export function HeroSection() {
           Empower Your Child with the gift of Confidence
         </h1>
         <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 mb-12 max-w-2xl mx-auto text-balance">
-          Boost your child's confidence and eliminate English speaking anxiety with our unique program.WE use fun activities and games to help children speak in English accurately and fluently.
+          Boost your child's confidence and eliminate English speaking anxiety with our unique program.We use fun activities and games to help children speak in English accurately and fluently.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link href="/auth/sign-up">
