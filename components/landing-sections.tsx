@@ -54,13 +54,13 @@ export function AboutSection() {
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-slate-400">
               <li className="flex items-center gap-2">
-                <span className="text-accent">✓</span> Expert faculty with international exposure
+                <span className="text-accent">✓</span> Conversational Aproach:Encourages speaking through real-time practice rather than memorizing word list.
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-accent">✓</span> Modern curriculum focused on practical skills
+                <span className="text-accent">✓</span> Interactive Learning:Utilizes phonics,quizzes,flashecards,and storytelling to retain attentiion.
               </li>
               <li className="flex items-center gap-2">
-                <span className="text-accent">✓</span> Personalized learning experience
+                <span className="text-accent">✓</span> Confidence Building:Shifts focus from error grammer to expressing thoughts without hesitation or fear.
               </li>
               <li className="flex items-center gap-2">
                 <span className="text-accent">✓</span> Industry-recognized certifications
