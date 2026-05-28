@@ -16,7 +16,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
-            <div className="text-2xl font-bold text-primary">EA</div>
+            <div className="text-2xl font-bold text-primary">AJA</div>
           </Link>
 
           {/* Desktop Navigation */}
