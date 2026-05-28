@@ -180,21 +180,21 @@ export function ContactSection() {
                 <Phone className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">Phone</h4>
-                  <p className="text-slate-600 dark:text-slate-400">+1 (555) 123-4567</p>
+                  <p className="text-slate-600 dark:text-slate-400">01537-452383</p>
                 </div>
               </div>
               <div className="flex gap-4">
                 <Mail className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">Email</h4>
-                  <p className="text-slate-600 dark:text-slate-400">contact@academy.edu</p>
+                  <p className="text-slate-600 dark:text-slate-400">AJA@academy.edu</p>
                 </div>
               </div>
               <div className="flex gap-4">
                 <MapPin className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">Address</h4>
-                  <p className="text-slate-600 dark:text-slate-400">123 Education Street, City, Country</p>
+                  <p className="text-slate-600 dark:text-slate-400">2nd Floor Saima Plaza,Chakaria,Cox'sbazar</p>
                 </div>
               </div>
             </div>
