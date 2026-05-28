@@ -56,7 +56,7 @@ export function AboutSection() {
               <li className="flex items-left gap-2">
                 <span className="text-accent">✓</span> Conversational Aproach:Encourages speaking through real-time practice rather than memorizing word list.
               </li>
-              <li className="flex items-center gap-2">
+              <li className="flex items-left gap-2">
                 <span className="text-accent">✓</span> Interactive Learning:Utilizes phonics,quizzes,flashecards,and storytelling to retain attentiion.
               </li>
               <li className="flex items-center gap-2">
