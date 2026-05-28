@@ -53,7 +53,7 @@ export function AboutSection() {
               With experienced faculty and modern teaching methodologies, we prepare students for global opportunities.
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-slate-400">
-              <li className="flex items-center gap-2">
+              <li className="flex items-left gap-2">
                 <span className="text-accent">✓</span> Conversational Aproach:Encourages speaking through real-time practice rather than memorizing word list.
               </li>
               <li className="flex items-center gap-2">
