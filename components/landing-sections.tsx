@@ -125,3 +125,176 @@ export function CoursesSection() {
     </section>
   )
 }
+
+export function FacilitiesSection() {
+  const facilities = [
+    {
+      icon: BookOpen,
+      title: 'Library',
+      description: 'Well-stocked library with thousands of English books, journals, and digital resources for student reference.'
+    },
+    {
+      icon: Zap,
+      title: 'Digital Classroom',
+      description: 'State-of-the-art smart classrooms with interactive boards, projectors, and multimedia learning tools.'
+    },
+    {
+      icon: Wifi,
+      title: 'WiFi Campus',
+      description: 'High-speed WiFi connectivity throughout campus for seamless online learning and research.'
+    }
+  ]
+
+  return (
+    <section id="facilities" className="py-20 bg-white dark:bg-slate-950">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-primary mb-4">Our Facilities</h2>
+          <p className="text-lg text-slate-600 dark:text-slate-400">World-class infrastructure for optimal learning</p>
+        </div>
+        <div className="grid md:grid-cols-3 gap-8">
+          {facilities.map((facility, idx) => {
+            const Icon = facility.icon
+            return (
+              <Card key={idx} className="p-6 text-center hover:shadow-lg transition-shadow">
+                <div className="flex justify-center mb-4">
+                  <div className="bg-accent/10 p-4 rounded-full">
+                    <Icon className="w-8 h-8 text-accent" />
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-foreground mb-2">{facility.title}</h3>
+                <p className="text-slate-600 dark:text-slate-400">{facility.description}</p>
+              </Card>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export function ContactSection() {
+  const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
+  const [submitted, setSubmitted] = useState(false)
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    console.log('Form submitted:', formData)
+    setSubmitted(true)
+    setTimeout(() => {
+      setFormData({ name: '', email: '', subject: '', message: '' })
+      setSubmitted(false)
+    }, 3000)
+  }
+
+  return (
+    <section id="contact" className="py-20 bg-slate-50 dark:bg-slate-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-primary mb-4">Get in Touch</h2>
+          <p className="text-lg text-slate-600 dark:text-slate-400">We&apos;d love to hear from you</p>
+        </div>
+        <div className="grid md:grid-cols-2 gap-12">
+          <div>
+            <h3 className="text-2xl font-bold text-foreground mb-8">Contact Information</h3>
+            <div className="space-y-6">
+              <div className="flex gap-4">
+                <MapPin className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
+                <div>
+                  <h4 className="font-semibold text-foreground mb-1">Address</h4>
+                  <p className="text-slate-600 dark:text-slate-400">123 Academic Avenue, City Center, State 12345</p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <Phone className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
+                <div>
+                  <h4 className="font-semibold text-foreground mb-1">Phone</h4>
+                  <p className="text-slate-600 dark:text-slate-400">+1 (555) 123-4567</p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <Mail className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
+                <div>
+                  <h4 className="font-semibold text-foreground mb-1">Email</h4>
+                  <p className="text-slate-600 dark:text-slate-400">info@englishacademy.com</p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <Users className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
+                <div>
+                  <h4 className="font-semibold text-foreground mb-1">Office Hours</h4>
+                  <p className="text-slate-600 dark:text-slate-400">Monday - Friday: 9:00 AM - 6:00 PM</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="bg-white dark:bg-slate-800 p-8 rounded-lg shadow">
+            {submitted ? (
+              <div className="flex items-center justify-center h-full">
+                <div className="text-center">
+                  <div className="text-4xl text-accent mb-4">✓</div>
+                  <h4 className="text-xl font-bold text-foreground mb-2">Message Sent!</h4>
+                  <p className="text-slate-600 dark:text-slate-400">We&apos;ll get back to you shortly.</p>
+                </div>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">Name</label>
+                  <Input
+                    type="text"
+                    name="name"
+                    placeholder="Your name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">Email</label>
+                  <Input
+                    type="email"
+                    name="email"
+                    placeholder="Your email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">Subject</label>
+                  <Input
+                    type="text"
+                    name="subject"
+                    placeholder="Subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-2">Message</label>
+                  <Textarea
+                    name="message"
+                    placeholder="Your message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    rows={4}
+                  />
+                </div>
+                <Button type="submit" className="w-full bg-accent text-accent-foreground hover:bg-orange-600">
+                  Send Message
+                </Button>
+              </form>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
