@@ -2,7 +2,7 @@
 
 export const dynamic = 'force-dynamic'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -60,21 +60,30 @@ export default function AdminDashboard() {
   const [feesData, setFeesData] = useState<FeesFormData>({ amount: 0, paid_amount: 0, status: 'pending' })
   const [noticeData, setNoticeData] = useState<NoticeFormData>({ title: '', content: '' })
   const router = useRouter()
-  const supabase = createClient()
+  const supabaseRef = useRef<ReturnType<typeof createClient> | null>(null)
+
+  // Lazy initialize supabase
+  const getSupabase = () => {
+    if (!supabaseRef.current) {
+      supabaseRef.current = createClient()
+    }
+    return supabaseRef.current
+  }
 
   useEffect(() => {
     const checkAdminAndFetchStudents = async () => {
       try {
+        const supabase = getSupabase()
         const {
           data: { user },
-        } = await supabase.auth.getUser()
+        } = await getSupabase().auth.getUser()
 
         if (!user || !user.user_metadata?.is_admin) {
           router.push('/admin/login')
           return
         }
 
-        const { data, error } = await supabase.from('students').select('*').order('created_at', { ascending: false })
+        const { data, error } = await getSupabase().from('students').select('*').order('created_at', { ascending: false })
 
         if (error) throw error
         setStudents(data || [])
@@ -86,10 +95,10 @@ export default function AdminDashboard() {
     }
 
     checkAdminAndFetchStudents()
-  }, [router, supabase])
+  }, [router])
 
   const handleLogout = async () => {
-    await supabase.auth.signOut()
+    await getSupabase().auth.signOut()
     router.push('/')
   }
 
@@ -101,7 +110,7 @@ export default function AdminDashboard() {
       }
 
       // Create auth user
-      const { data: authData, error: authError } = await supabase.auth.signUp({
+      const { data: authData, error: authError } = await getSupabase().auth.signUp({
         email: formData.email,
         password: formData.password,
         options: {
@@ -116,7 +125,7 @@ export default function AdminDashboard() {
 
       if (authData.user) {
         // Create student record
-        const { error: studentError } = await supabase.from('students').insert({
+        const { error: studentError } = await getSupabase().from('students').insert({
           id: authData.user.id,
           first_name: formData.first_name,
           last_name: formData.last_name,
@@ -128,13 +137,13 @@ export default function AdminDashboard() {
         if (studentError) throw studentError
 
         // Create attendance record
-        await supabase.from('attendance').insert({
+        await getSupabase().from('attendance').insert({
           student_id: authData.user.id,
           attendance_percentage: 0,
         })
 
         // Create fees record
-        await supabase.from('fees').insert({
+        await getSupabase().from('fees').insert({
           student_id: authData.user.id,
           amount: 0,
           paid_amount: 0,
@@ -154,7 +163,7 @@ export default function AdminDashboard() {
   const handleUpdateAttendance = async () => {
     if (!selectedStudent) return
     try {
-      const { error } = await supabase
+      const { error } = await getSupabase()
         .from('attendance')
         .update(attendanceData)
         .eq('student_id', selectedStudent.id)
@@ -170,7 +179,7 @@ export default function AdminDashboard() {
   const handleUpdateFees = async () => {
     if (!selectedStudent) return
     try {
-      const { error } = await supabase
+      const { error } = await getSupabase()
         .from('fees')
         .update(feesData)
         .eq('student_id', selectedStudent.id)
@@ -185,10 +194,10 @@ export default function AdminDashboard() {
 
   const handlePostNotice = async () => {
     try {
-      const { data: { user } } = await supabase.auth.getUser()
+      const { data: { user } } = await getSupabase().auth.getUser()
       if (!user) return
 
-      const { error } = await supabase.from('notices').insert({
+      const { error } = await getSupabase().from('notices').insert({
         ...noticeData,
         created_by: user.id,
         is_admin_notice: true,
@@ -206,7 +215,7 @@ export default function AdminDashboard() {
   const handleDeleteStudent = async (studentId: string) => {
     if (!confirm('Are you sure you want to delete this student?')) return
     try {
-      const { error } = await supabase.from('students').delete().eq('id', studentId)
+      const { error } = await getSupabase().from('students').delete().eq('id', studentId)
       if (error) throw error
       setStudents(students.filter((s) => s.id !== studentId))
       alert('Student deleted successfully!')

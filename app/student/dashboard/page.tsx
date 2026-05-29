@@ -2,7 +2,7 @@
 
 export const dynamic = 'force-dynamic'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -43,14 +43,21 @@ export default function StudentDashboard() {
   const [notices, setNotices] = useState<Notice[]>([])
   const [loading, setLoading] = useState(true)
   const router = useRouter()
-  const supabase = createClient()
+  const supabaseRef = useRef<ReturnType<typeof createClient> | null>(null)
+
+  const getSupabase = () => {
+    if (!supabaseRef.current) {
+      supabaseRef.current = createClient()
+    }
+    return supabaseRef.current
+  }
 
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
         const {
           data: { user },
-        } = await supabase.auth.getUser()
+        } = await getSupabase().auth.getUser()
 
         if (!user) {
           router.push('/auth/login')
@@ -107,10 +114,10 @@ export default function StudentDashboard() {
     }
 
     fetchDashboardData()
-  }, [router, supabase])
+  }, [router])
 
   const handleLogout = async () => {
-    await supabase.auth.signOut()
+    await getSupabase().auth.signOut()
     router.push('/')
   }
 
