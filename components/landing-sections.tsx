@@ -1,4 +1,5 @@
 'use client'
+
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -15,7 +16,7 @@ export function HeroSection() {
           Empower Your Child with the gift of Confidence
         </h1>
         <p className="text-xl md:text-2xl text-slate-600 dark:text-slate-400 mb-12 max-w-2xl mx-auto text-balance">
-          Boost your child's confidence and eliminate English speaking anxiety with our unique program. We use fun activities and games to help children speak in English accurately and fluently.
+          Boost your child's confidence and eliminate English speaking anxiety with our unique program.We use fun activities and games to help children speak in English accurately and fluently.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link href="/auth/sign-up">
@@ -52,21 +53,17 @@ export function AboutSection() {
               With experienced faculty and modern teaching methodologies, we prepare students for global opportunities.
             </p>
             <ul className="space-y-2 text-slate-600 dark:text-slate-400">
-              <li className="flex items-start gap-2">
-                <span className="text-accent">✓</span> 
-                <span><strong>Conversational Approach:</strong> Encourages speaking through real-time practice rather than memorizing word lists.</span>
+              <li className="flex items-left gap-2">
+                <span className="text-accent">✓</span> Conversational Aproach:Encourages speaking through real-time practice rather than memorizing word list.
               </li>
-              <li className="flex items-start gap-2">
-                <span className="text-accent">✓</span> 
-                <span><strong>Interactive Learning:</strong> Utilizes phonics, quizzes, flashcards, and storytelling to retain attention.</span>
+              <li className="flex items-left gap-2">
+                <span className="text-accent">✓</span> Interactive Learning:Utilizes phonics,quizzes,flashecards,and storytelling to retain attentiion.
               </li>
-              <li className="flex items-start gap-2">
-                <span className="text-accent">✓</span> 
-                <span><strong>Confidence Building:</strong> Shifts focus from error-free grammar to expressing thoughts without hesitation or fear.</span>
+              <li className="flex items-center gap-2">
+                <span className="text-accent">✓</span> Confidence Building:Shifts focus from error grammer to expressing thoughts without hesitation or fear.
               </li>
-              <li className="flex items-start gap-2">
-                <span className="text-accent">✓</span> 
-                <span>Industry-recognized certifications</span>
+              <li className="flex items-center gap-2">
+                <span className="text-accent">✓</span> Industry-recognized certifications
               </li>
             </ul>
           </div>
@@ -107,19 +104,141 @@ export function CoursesSection() {
           <p className="text-lg text-slate-600 dark:text-slate-400">Choose from our diverse range of programs</p>
         </div>
         <div className="grid md:grid-cols-2 gap-12">
-          {courses.map((course, idx) => (
-            <Card key={idx} className="p-6">
-              <h3 className="text-2xl font-bold mb-6 text-primary">{course.category}</h3>
-              <ul className="space-y-4">
-                {course.items.map((item, i) => (
-                  <li key={i} className="flex justify-between items-center border-b border-slate-200 dark:border-slate-700 pb-2">
-                    <span className="text-foreground">{item.title}</span>
-                    <span className="text-sm text-slate-500">{item.duration}</span>
-                  </li>
+          {courses.map((courseGroup, idx) => (
+            <div key={idx}>
+              <h3 className="text-2xl font-bold text-primary mb-6">{courseGroup.category}</h3>
+              <div className="space-y-4">
+                {courseGroup.items.map((course, cidx) => (
+                  <Card key={cidx} className="p-6 border-l-4 border-accent hover:shadow-lg transition">
+                    <h4 className="font-semibold text-lg text-foreground mb-2">{course.title}</h4>
+                    <p className="text-slate-600 dark:text-slate-400">Duration: {course.duration}</p>
+                  </Card>
                 ))}
-              </ul>
-            </Card>
+              </div>
+            </div>
           ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export function FacilitiesSection() {
+  const facilities = [
+    { icon: BookOpen, title: 'Modern Library', description: 'Extensive collection of books and digital resources' },
+    { icon: Zap, title: 'Digital Classroom', description: 'State-of-the-art learning management system' },
+    { icon: Wifi, title: 'High-Speed WiFi', description: 'Campus-wide connectivity for seamless learning' },
+  ]
+
+  return (
+    <section id="facilities" className="py-20 bg-white dark:bg-slate-950">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl font-bold text-primary mb-4">Our Facilities</h2>
+          <p className="text-lg text-slate-600 dark:text-slate-400">Everything you need for success</p>
+        </div>
+        <div className="grid md:grid-cols-3 gap-8">
+          {facilities.map((facility, idx) => {
+            const Icon = facility.icon
+            return (
+              <Card key={idx} className="p-8 text-center hover:shadow-lg transition border-none bg-slate-50 dark:bg-slate-900">
+                <div className="flex justify-center mb-4">
+                  <div className="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center">
+                    <Icon className="w-8 h-8 text-accent" />
+                  </div>
+                </div>
+                <h3 className="text-xl font-semibold text-foreground mb-2">{facility.title}</h3>
+                <p className="text-slate-600 dark:text-slate-400">{facility.description}</p>
+              </Card>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export function ContactSection() {
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
+  const [submitted, setSubmitted] = useState(false)
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    setSubmitted(true)
+    setTimeout(() => setSubmitted(false), 3000)
+  }
+
+  return (
+    <section id="contact" className="py-20 bg-slate-50 dark:bg-slate-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid md:grid-cols-2 gap-12">
+          {/* Contact Info */}
+          <div>
+            <h2 className="text-4xl font-bold text-primary mb-8">Get In Touch</h2>
+            <div className="space-y-6">
+              <div className="flex gap-4">
+                <Phone className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
+                <div>
+                  <h4 className="font-semibold text-foreground mb-1">Phone</h4>
+                  <p className="text-slate-600 dark:text-slate-400">01537-452383</p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <Mail className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
+                <div>
+                  <h4 className="font-semibold text-foreground mb-1">Email</h4>
+                  <p className="text-slate-600 dark:text-slate-400">AJA@academy.edu</p>
+                </div>
+              </div>
+              <div className="flex gap-4">
+                <MapPin className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
+                <div>
+                  <h4 className="font-semibold text-foreground mb-1">Address</h4>
+                  <p className="text-slate-600 dark:text-slate-400">2nd Floor Saima Plaza,Chakaria,Cox'sbazar</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Contact Form */}
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-2">Name</label>
+              <Input
+                type="text"
+                placeholder="Your name"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-2">Email</label>
+              <Input
+                type="email"
+                placeholder="Your email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                required
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-foreground mb-2">Message</label>
+              <Textarea
+                placeholder="Your message"
+                rows={4}
+                value={formData.message}
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                required
+              />
+            </div>
+            <Button type="submit" className="w-full bg-accent text-accent-foreground hover:bg-orange-600">
+              Send Message
+            </Button>
+            {submitted && (
+              <p className="text-green-600 text-center">Thank you! We&apos;ll get back to you soon.</p>
+            )}
+          </form>
         </div>
       </div>
     </section>
