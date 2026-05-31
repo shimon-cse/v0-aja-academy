@@ -220,7 +220,7 @@ export function ContactSection() {
                 <Mail className="w-6 h-6 text-accent flex-shrink-0 mt-1" />
                 <div>
                   <h4 className="font-semibold text-foreground mb-1">Email</h4>
-                  <p className="text-slate-600 dark:text-slate-400">info@englishacademy.com</p>
+                  <p className="text-slate-600 dark:text-slate-400">ajaacademy@gmail.com</p>
                 </div>
               </div>
               <div className="flex gap-4">
