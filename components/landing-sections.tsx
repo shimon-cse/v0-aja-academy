@@ -92,7 +92,7 @@ export function CoursesSection() {
     {
       category: 'Postgraduate Programs',
       items: [
-        { title: 'Master of Arts in English', duration: '2 Years' },
+        { title: 'IELTS Preparation', duration: '2 Years' },
         { title: 'Master of Philosophy (M.Phil)', duration: '2 Years' },
         { title: 'Doctor of Philosophy (Ph.D)', duration: '3 Years' },
       ]
