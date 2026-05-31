@@ -84,17 +84,18 @@ export function CoursesSection() {
     {
       category: 'Undergraduate Programs',
       items: [
-        { title: 'Kids Spoken English', duration: '4 Years' },
-        { title: 'Diploma in English Communication', duration: '2 Years' },
-        { title: 'Certificate in Business English', duration: '1 Year' },
+        { title: 'Kids Spoken English', duration: '1 Year' },
+        { title: 'Basic Spoken English', duration: '2 Years' },
+        { title: 'Advanced Spoken English', duration: '3 Years' },
       ]
     },
     {
       category: 'Postgraduate Programs',
       items: [
-        { title: 'IELTS Preparation', duration: '2 Years' },
-        { title: 'Master of Philosophy (M.Phil)', duration: '2 Years' },
-        { title: 'Doctor of Philosophy (Ph.D)', duration: '3 Years' },
+        { title: 'Master of Arts in English', duration: '2 Years' },
+        { title: 'IELTS Preparation', duration: '6 Months' },
+        { title: 'Business English', duration: '3 Months' },
+        { title: 'English for Professionals', duration: '4 Months' },
       ]
     }
   ]
