@@ -84,7 +84,7 @@ export function CoursesSection() {
     {
       category: 'Undergraduate Programs',
       items: [
-        { title: 'Bachelor of Arts in English', duration: '4 Years' },
+        { title: 'Kids Spoken English', duration: '4 Years' },
         { title: 'Diploma in English Communication', duration: '2 Years' },
         { title: 'Certificate in Business English', duration: '1 Year' },
       ]
